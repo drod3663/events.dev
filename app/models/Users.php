@@ -17,6 +17,12 @@ class User extends Model implements UserInterface, RemindableInterface {
 	 */
 	protected $table = 'users';
 
+	/*relationship*/
+	public function calendarEvents()
+	{
+    return $this->hasMany('CalendarEvent');
+	}
+
 	/**
 	 * The attributes excluded from the model's JSON form.
 	 *
@@ -29,7 +35,7 @@ class User extends Model implements UserInterface, RemindableInterface {
 		'username' => 'required|max:255|unique:users',
 		'first_name' => 'required|max:255',
 		'last_name' => 'required|max:255',
-		'password' => 'required|confirmed'
+		'password' => 'required'
 		);
 
 	protected $hashable = [ 'password'];

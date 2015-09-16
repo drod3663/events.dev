@@ -11,7 +11,19 @@
 |
 */
 
-Route::get('/', function()
-{
-	return View::make('hello');
-});
+Route::resource('events', 'CalendarEventsController');
+
+Route::get('/location', 'HomeController@showLocation');
+
+
+Route::get('login', 'HomeController@showLogin');
+Route::post('login', 'HomeController@doLogin');
+Route::get('logout', 'HomeController@doLogout');
+
+
+
+
+// Route::get('/', function()
+// {
+// 	return View::make('hello');
+// });
