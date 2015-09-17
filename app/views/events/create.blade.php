@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-<div class="col-md-8">
+
 @section('content')
 
 	{{ Form::token() }}
@@ -13,5 +13,5 @@
 	{{Form::file('image')}}
 	{{Form::close()}}
 
-</div>
+
 @stop

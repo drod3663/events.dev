@@ -25,6 +25,11 @@ class HomeController extends BaseController {
 		return View::make('location');
 	}
 
+	public function showRegister()
+	{
+		return View::make('register');
+	}
+
 	public function showLogin()
 	{
 		return View::make('login');

@@ -15,7 +15,7 @@ public function __construct()
 	 */
 	public function index()
 	{
-		
+		$locations = Location::all();
 		$events = CalendarEvent::with('user')->paginate(4);
 
 		$query = CalendarEvent::with('user');
@@ -27,7 +27,9 @@ public function __construct()
 		$events = $query->orderBy('created_at', 'desc')->paginate(4);
 
 		
-		return View::make('events.index')->with(array('events' => $events));
+		// return View::make('events.index')->with(array('events' => $events));
+		return View::make('events.index', compact('events', 'locations'));
+
 	}
 
 	/**
@@ -57,6 +59,7 @@ public function __construct()
 			return Redirect::back()->withInput()->withErrors($validator);
 			
 		} else {
+			$locations = Location::all();
 			$event = new CalendarEvent();
 			$event->start_time     = Input::get('start_time');
 	        $event->end_time       = Input::get('end_time');
@@ -64,6 +67,7 @@ public function __construct()
 	        $event->description    = Input::get('description');
 	        $event->price          = Input::get('price');
 	        $event->user_id        = Auth::id();
+	        $event->location_id    = Input::get('location_id');
 	        $event->save();
 
 			Log::info('Event Saved.',Input::all());
@@ -100,6 +104,7 @@ public function __construct()
 	public function edit($id)
 	{
 		$event = CalendarEvent::find($id);
+		$locations = Location::all();
 		return View::make('events.edit')->with('event', $event);
 	}
 
@@ -112,6 +117,7 @@ public function __construct()
 	 */
 	public function update($id)
 	{
+		
 		$validator = Validator::make(Input::all(), CalendarEvent::$rules);
 		if($validator->fails()) {
 			Session::flash('errorMessage', 'Update Failed');
@@ -124,6 +130,7 @@ public function __construct()
 	        $event->description    = Input::get('description');
 	        $event->price          = Input::get('price');
 	        $event->user_id        = Auth::id();
+	        $event->location_id	   = Input::get('location_id');
 			$event->save();
 
 			Session::flash('successMessage', 'Updated Successfully');
@@ -140,7 +147,7 @@ public function __construct()
 	 */
 	public function destroy($id)
 	{
-		Post::find($id)->delete();
+		CalendarEvent::find($id)->delete();
 		
 		Session::flash('successMessage', 'Deleted Successfully');
 		return Redirect::action('CalendarEventsController@index');

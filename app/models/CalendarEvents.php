@@ -22,5 +22,6 @@ class CalendarEvent extends \Eloquent {
 	'title' => 'required|max:255',
 	'description' => 'required|max:255',
 	'price' => 'required|max:10',
+	
 	);
 }

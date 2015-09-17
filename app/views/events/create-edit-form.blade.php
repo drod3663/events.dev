@@ -1,3 +1,13 @@
+<h5><strong>Location</strong></h5>
+<select name="location_id">
+    @foreach ($locations as $location)
+    <option value={{"location->id"}}>
+    {{$location->title}}
+    @endforeach
+    </option>
+</select>
+    
+
 
 <div class="form-group @if($errors->has('start_time')) has-error @endif">
     {{ Form::label('start time', 'Start Time') }}
@@ -14,10 +24,7 @@
     {{ Form::text('title', null, ['class' => 'form-control']) }}
 </div>
 
-<div class="form-group @if($errors->has('location')) has-error @endif">
-    {{ Form::label('location', 'Location') }}
-    {{ Form::text('location', null, ['class' => 'form-control']) }}
-</div>
+
 
 <div class="form-group @if($errors->has('description')) has-error @endif">
     {{ Form::label('description', 'Description') }}

@@ -21,7 +21,8 @@ class LocationsController extends \BaseController {
 	 */
 	public function create()
 	{
-		//
+		$locations = Location::all();
+		return View::make('locations.create')->with('locations', $locations);
 	}
 
 	/**
@@ -56,7 +57,7 @@ class LocationsController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		//
+		
 	}
 
 	/**

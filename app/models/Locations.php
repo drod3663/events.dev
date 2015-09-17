@@ -9,7 +9,7 @@ class Location extends \Eloquent {
     return $this->belongsTo('CalendarEvent');
 	}
 	
-	protected $rules = array(
+	public static $rules = array(
 	'title'   => 'required|max:255',
     'address' => 'required|max:255',
     'city'    => 'required|max:255',

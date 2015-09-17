@@ -16,6 +16,7 @@
 		<div clas="col-md-6">
 			<a class="btn btn-primary" href="{{action('CalendarEventsController@edit', $event->id)}}">Edit</a>
 			<button id="delete" class="btn btn-danger">Delete</button>
+			<a class="btn btn-primary" href="{{action('HomeController@showRegister')}}">Register For Event</a>
 	@endif
 		</div>
 		</div>
